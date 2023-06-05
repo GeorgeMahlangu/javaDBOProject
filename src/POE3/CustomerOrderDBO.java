@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class CustomerOrderDBO {
 
-    public void insertPayRecord(int customerNumber, int quotationNumber, int customerCategory, int productCode, int productQuantity , double productPrice,double subTotalAmount,double vatAmount, double orderDiscountAmount,double totalAmountDue )
+    public static void insertPayRecord(int customerNumber, int quotationNumber, int customerCategory, int productCode, int productQuantity, double productPrice, double subTotalAmount, double vatAmount, double orderDiscountAmount, double totalAmountDue)
     {
         System.out.println("Inserting customer order");
 

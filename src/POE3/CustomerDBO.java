@@ -19,7 +19,7 @@ public class CustomerDBO {
 
         return customer;
     }
-    public void selectCustomer(int customerNumber)
+    public static void selectCustomer(int customerNumber)
     {
         String selectStatement = "SELECT * FROM CUSTOMER WHERE Customer_Number="+ customerNumber;
 
@@ -29,11 +29,17 @@ public class CustomerDBO {
 
          Customer customer = getCustomer(rsCustomer);
 
+
+         System.out.println("Customer Information");
+         System.out.println("================================================================");
+         System.out.println(" ");
          System.out.println("Customer Number: " + customer.getCustomerNumber());
          System.out.println("Customer Name: " + customer.getCustomerName());
          System.out.println("Customer Category: " + customer.getCustomerCategory());
          System.out.println("Customer Telphone number: " + customer.getCustomerTelNo());
          System.out.println("Customer Delivery Address: " + customer.getCustomerDeliveryAddress());
+         System.out.println(" ");
+         System.out.println("===============================================================");
 
 
         } catch (SQLException e) {

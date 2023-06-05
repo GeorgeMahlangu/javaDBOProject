@@ -23,6 +23,29 @@ public class CustomerOrder {
 
     private double totalAmountDue = 0.0;
 
+    public CustomerOrder() {
+
+        this.customerNumber = 0;
+
+        this.quotationNumber = 0;
+
+        this.customerCategory = 0;
+
+        this.productCode = 0;
+
+        this.productQuantity = 0;
+
+        this.productPrice = 0;
+
+        this.subTotalAmount = 0.0;
+
+        this.vatAmount = 0.0;
+
+        this.orderDiscountAmount = 0.0;
+
+        this.totalAmountDue = 0.0;
+    }
+
     public CustomerOrder(int customerNumber, int quotationNumber, int customerCategory, int productCode, int productQuantity, double productPrice) {
         this.customerNumber = customerNumber;
         this.quotationNumber = quotationNumber;
@@ -149,6 +172,7 @@ public class CustomerOrder {
     public void setTotalAmountDue(double totalAmountDue) {
         this.totalAmountDue = totalAmountDue;
     }
+
 }
 
 class CustomerAccountOrder extends CustomerOrder{
