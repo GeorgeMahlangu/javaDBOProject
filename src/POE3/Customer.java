@@ -18,6 +18,14 @@ public class Customer {
         this.customerDeliveryAddress = customerDeliveryAddress;
     }
 
+    public Customer() {
+        this.customerNumber = 0;
+        this.customerName = "";
+        this.customerCategory = 0;
+        this.customerTelNo = 0;
+        this.customerDeliveryAddress = "";
+    }
+
     public int getCustomerNumber() {
         return customerNumber;
     }
