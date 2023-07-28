@@ -2,26 +2,26 @@ package POE3;
 
 public class CustomerOrder {
 
-    private int customerNumber;
+    public int customerNumber;
 
-    private int quotationNumber;
+    public int quotationNumber;
 
-    private int customerCategory;
+    public int customerCategory;
 
-    private int productCode;
+    public int productCode;
 
-    private int productQuantity;
+    public int productQuantity;
 
-    private double productPrice;
+    public double productPrice;
 
     //Setting default values not to include them in constructor;
-    private double subTotalAmount = 0.0;
+    public double subTotalAmount = 0.0;
 
-    private double vatAmount = 0.0;
+    public double vatAmount = 0.0;
 
-    private double orderDiscountAmount = 0.0;
+    public double orderDiscountAmount = 0.0;
 
-    private double totalAmountDue = 0.0;
+    public double totalAmountDue = 0.0;
 
     public CustomerOrder() {
 
@@ -55,7 +55,7 @@ public class CustomerOrder {
         this.productPrice = productPrice;
     }
 
-    public void calculateTotalAmountDue(int customerCategory, int productQuantity, double productPrice)
+    public double calculateTotalAmountDue(int customerCategory, int productQuantity, double productPrice)
     {
         //initialize amounts
         double subTotalAmount = 0.0;
@@ -78,109 +78,17 @@ public class CustomerOrder {
         //Calculate total Amount Due
         totalAmountDue = ((subTotalAmount+vatAmount)-(orderDiscountAmount));
 
-
-        //Display calculated values
-        System.out.println("Sub total Amount: " +  subTotalAmount);
-        System.out.println("Order Vat Amount: " +  vatAmount);
-        System.out.println("Order Discount Amount: " +  orderDiscountAmount);
-        System.out.println("Total Amount Due: " +  totalAmountDue);
-
-        //Return calculated values to Object
-        this.subTotalAmount = subTotalAmount;
-        this.vatAmount = vatAmount;
-        this.orderDiscountAmount = orderDiscountAmount;
-        this.totalAmountDue = orderDiscountAmount;
-
-    }
-
-    public double getSubTotalAmount() {
-        return subTotalAmount;
-    }
-
-    public double getVatAmount() {
-        return vatAmount;
-    }
-
-    public double getOrderDiscountAmount() {
-        return orderDiscountAmount;
-    }
-
-    public double getTotalAmountDue() {
         return totalAmountDue;
+
     }
 
-    public int getCustomerNumber() {
-        return customerNumber;
-    }
-
-    public void setCustomerNumber(int customerNumber) {
-        this.customerNumber = customerNumber;
-    }
-
-    public int getQuotationNumber() {
-        return quotationNumber;
-    }
-
-    public void setQuotationNumber(int quotationNumber) {
-        this.quotationNumber = quotationNumber;
-    }
-
-    public int getCustomerCategory() {
-        return customerCategory;
-    }
-
-    public void setCustomerCategory(int customerCategory) {
-        this.customerCategory = customerCategory;
-    }
-
-    public int getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode(int productCode) {
-        this.productCode = productCode;
-    }
-
-    public int getProductQuantity() {
-        return productQuantity;
-    }
-
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
-    }
-
-    public double getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public void setSubTotalAmount(double subTotalAmount) {
-        this.subTotalAmount = subTotalAmount;
-    }
-
-    public void setVatAmount(double vatAmount) {
-        this.vatAmount = vatAmount;
-    }
-
-    public void setOrderDiscountAmount(double orderDiscountAmount) {
-        this.orderDiscountAmount = orderDiscountAmount;
-    }
-
-    public void setTotalAmountDue(double totalAmountDue) {
-        this.totalAmountDue = totalAmountDue;
-    }
-
-}
 
 class CustomerAccountOrder extends CustomerOrder{
     public CustomerAccountOrder(int customerNumber, int quotationNumber, int customerCategory, int productCode, int productQuantity, double productPrice) {
         super(customerNumber, quotationNumber, customerCategory, productCode, productQuantity, productPrice);
     }
 
-    public void calculateTotalAmountDue(int customerCategory, int productQuantity, double productPrice)
+    public double calculateTotalAmountDue(int customerCategory, int productQuantity, double productPrice)
     {
         //initialize amounts
         double subTotalAmount;
@@ -199,24 +107,12 @@ class CustomerAccountOrder extends CustomerOrder{
             default -> 0;
         };
 
-
         //Calculate total Amount Due
         totalAmountDue = ((subTotalAmount+vatAmount)-(orderDiscountAmount));
 
-
-        //Display calculated values
-        System.out.println("Sub total Amount: " +  subTotalAmount);
-        System.out.println("Order Vat Amount: " +  vatAmount);
-        System.out.println("Order Discount Amount: " +  orderDiscountAmount);
-        System.out.println("Total Amount Due: " +  totalAmountDue);
-
-        //Return calculated values to Object
-        this.setSubTotalAmount(subTotalAmount);
-        this.setVatAmount(vatAmount);
-        this.setOrderDiscountAmount(orderDiscountAmount);
-        this.setOrderDiscountAmount(orderDiscountAmount);
+        return totalAmountDue;
 
     }
 
-}
+}}
 

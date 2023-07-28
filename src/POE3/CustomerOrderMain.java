@@ -1,54 +1,52 @@
 package POE3;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CustomerOrderMain {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int customerNumber;
 
-//        System.out.print("Enter the customer number to find customer: ");
-//        customerNumber = scanner.nextInt();
-//        CustomerDBO.selectCustomer(customerNumber);
+        System.out.print("Enter the customer number to find customer: ");
+        customerNumber = scanner.nextInt();
+        try{
+            CustomerDBO.SelectCustomer(customerNumber);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
 
         //Creating a new customer order instance;
         CustomerOrder customerOrder = new CustomerOrder();
 
         //Prompt values from the users and set Object
         System.out.println("Please enter customer number");
-        int customerNumber2 = scanner.nextInt();
-
-        customerOrder.setCustomerNumber(customerNumber2);
+        customerOrder.customerNumber = scanner.nextInt();
 
         System.out.println("Please enter Quotation number");
-        int quotationNumber = scanner.nextInt();
-
-        customerOrder.setQuotationNumber(quotationNumber);
+        customerOrder.quotationNumber = scanner.nextInt();
 
         System.out.println("Please enter customer category");
-        int customerCategory = scanner.nextInt();
-
-        customerOrder.setCustomerCategory(customerCategory);
+        customerOrder.customerCategory = scanner.nextInt();
 
 
         System.out.println("Please enter product code");
-        int productCode = scanner.nextInt();
-
-        customerOrder.setProductCode(productCode);
+        customerOrder.productCode = scanner.nextInt();
 
         System.out.println("Please enter product price");
-        double productPrice = scanner.nextDouble();
+        customerOrder.productPrice = scanner.nextDouble();
 
-        customerOrder.setProductPrice(productPrice);
+        double totalAmountDue = customerOrder.calculateTotalAmountDue(customerOrder.customerCategory, customerOrder.productQuantity, customerOrder.productPrice);
 
-        customerOrder.calculateTotalAmountDue(customerOrder.getCustomerCategory(), customerOrder.getProductQuantity(), customerOrder.getProductPrice());
+        System.out.println("The total amount due for customer is: R"  + totalAmountDue);
 
-        CustomerOrderDBO.insertPayRecord(customerOrder.getCustomerNumber(), customerOrder.getQuotationNumber(),
-                customerOrder.getCustomerCategory(),customerOrder.getProductCode(),customerOrder.getProductQuantity()
-                ,customerOrder.getProductPrice(),customerOrder.getSubTotalAmount(),customerOrder.getVatAmount(),
-                customerOrder.getOrderDiscountAmount(),customerOrder.getTotalAmountDue());
+        CustomerOrderDBO.insertPayRecord(customerOrder.customerNumber, customerOrder.quotationNumber,
+                customerOrder.customerCategory,customerOrder.productCode,customerOrder.productQuantity
+                ,customerOrder.productPrice,customerOrder.subTotalAmount,customerOrder.vatAmount,
+                customerOrder.orderDiscountAmount,customerOrder.totalAmountDue);
 
 
     }
